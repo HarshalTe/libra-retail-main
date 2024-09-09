@@ -1,0 +1,266 @@
+import React, { useEffect, useState } from "react";
+
+import { connect } from "react-redux";
+import {
+  Row,
+  Col,
+  Card,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import AddIcon from "@mui/icons-material/Add";
+import TextField from "@material-ui/core/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { Divider } from "@mui/material";
+
+import DateFnsUtils from "@date-io/date-fns";
+
+import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { Typography } from "@mui/material";
+
+//*Actions
+import {
+  negativeProjectsPostData,
+  negativeProjectsPostData2,
+} from "../../../Redux/Creators/NegativeProjectsCreators";
+
+function AddNegativeProjects(props) {
+  const token = props.login?.login?.token;
+
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log("Values In Negative Projects Add:", values);
+
+    //? FormData Chahiye File Upload hai
+
+    const data = new FormData();
+    data.append("token", token);
+    data.append("pageno", props.data.pageno);
+    data.append("pageSize", props.data.pageSize);
+    data.append("project_name", values.project_name);
+    data.append("address", values.address);
+    data.append("pincode", values.pincode);
+    data.append("reasons", values.reasons);
+    data.append("file", values.file);
+
+    // props.negativeProjectsPostData(token, data);
+    props.negativeProjectsPostData2(data);
+    setSubmitting(true);
+    setModal(false);
+  };
+
+  return (
+    <div>
+      <Tooltip title="Add Projects" placement="top">
+        <Button
+          variant="outlined"
+          color="success"
+          size="small"
+          className="ml-3"
+          onClick={() => toggle()}
+          startIcon={<AddIcon fontSize="inherit" />}
+        >
+          Add
+        </Button>
+      </Tooltip>
+      <Modal
+        className="modal-lg"
+        isOpen={modal}
+        toggle={() => setModal(!modal)}
+      >
+        <ModalHeader toggle={() => setModal(!modal)}>
+          <Typography>
+            <strong>Add Negative Projects</strong>
+          </Typography>
+        </ModalHeader>
+        <Divider />
+        <ModalBody>
+          <Formik
+            initialValues={{
+              project_name: "",
+              address: "",
+              pincode: "",
+              reasons: "",
+              file: "",
+            }}
+            onSubmit={handleSubmit}
+            validationSchema={Yup.object().shape({
+              project_name: Yup.string().required("Project Name is required"),
+              address: Yup.string().required("Address is required"),
+              reasons: Yup.string().required("Reasons are required"),
+            })}
+          >
+            {(formProps) => (
+              <Form encType="multipart/form-data">
+                <Row>
+                  <Col md={6} style={{ paddingBottom: "20px" }}>
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      size="small"
+                      label="Project Name *"
+                      id="project_name"
+                      name="project_name"
+                      value={formProps.values.project_name}
+                      onChange={formProps.handleChange}
+                      error={
+                        formProps.touched.project_name &&
+                        Boolean(formProps.errors.project_name)
+                      }
+                      helperText={
+                        formProps.touched.project_name &&
+                        formProps.errors.project_name
+                      }
+                    />
+                  </Col>
+
+                  <Col md={6} style={{ paddingBottom: "20px" }}>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      id="address"
+                      name="address"
+                      label="Address *"
+                      value={formProps.values.address}
+                      onChange={formProps.handleChange}
+                      error={
+                        formProps.touched.address &&
+                        Boolean(formProps.errors.address)
+                      }
+                      helperText={
+                        formProps.touched.address && formProps.errors.address
+                      }
+                    />
+                  </Col>
+
+                  <Col md={6} style={{ paddingBottom: "20px" }}>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      id="pincode"
+                      name="pincode"
+                      label="Pincode"
+                      value={formProps.values.pincode}
+                      onChange={formProps.handleChange}
+                      error={
+                        formProps.touched.pincode &&
+                        Boolean(formProps.errors.pincode)
+                      }
+                      helperText={
+                        formProps.touched.pincode && formProps.errors.pincode
+                      }
+                    />
+                  </Col>
+
+                  <Col md={6} style={{ paddingBottom: "20px" }}>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      id="reasons"
+                      name="reasons"
+                      label="Reasons *"
+                      value={formProps.values.reasons}
+                      onChange={formProps.handleChange}
+                      error={
+                        formProps.touched.reasons &&
+                        Boolean(formProps.errors.reasons)
+                      }
+                      helperText={
+                        formProps.touched.reasons && formProps.errors.reasons
+                      }
+                    />
+                  </Col>
+
+                  <Col md={6} style={{ paddingBottom: "20px" }}>
+                    <TextField
+                      fullWidth
+                      type="file"
+                      size="small"
+                      variant="outlined"
+                      focused
+                      id="file"
+                      name="file"
+                      label="File Upload"
+                      onChange={(event) => {
+                        formProps.setFieldValue(
+                          "file",
+                          event.currentTarget.files[0]
+                        );
+                        console.log("file", formProps.values.file);
+                      }}
+                      error={
+                        formProps.touched.file && Boolean(formProps.errors.file)
+                      }
+                      helperText={
+                        formProps.touched.file && formProps.errors.file
+                      }
+                    />
+                  </Col>
+                </Row>
+
+                <Divider />
+
+                <Row className="pt-4 pd-4">
+                  <Col md={6}>
+                    <Button
+                      color="success"
+                      variant="contained"
+                      disabled={formProps.isSubmitting}
+                      fullWidth
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  </Col>
+
+                  <Col md={6}>
+                    <Button
+                      color="error"
+                      variant="contained"
+                      fullWidth
+                      onClick={() => toggle()}
+                    >
+                      Cancel
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            )}
+          </Formik>
+        </ModalBody>
+      </Modal>
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => {
+  return {
+    login: state.login,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    negativeProjectsPostData: (token, data) =>
+      dispatch(negativeProjectsPostData(token, data)),
+    negativeProjectsPostData2: (data) =>
+      dispatch(negativeProjectsPostData2(data)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddNegativeProjects);

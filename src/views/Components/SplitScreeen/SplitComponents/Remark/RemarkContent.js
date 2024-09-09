@@ -1,0 +1,30 @@
+// initialValues.js
+export const INITIAL_VALUES = {
+    propertyDescription: "1. The Property under consideration is 1BHK Flat/ Office/ Shop/Showroom in B+G+4 storied Residential/commercial building with/ without lift.",
+    heightOfLoft: "2. Height of the Loft/  Room/ Gala/ is 00 feet.",
+    access: "3. As per site observation access to the building is as per norms and road width is _ feet approx.",
+    documentsReceived: "4. We have Received only Index II copy / Sale Deed / Draft Agreement / Not legible CC copy / not legible OC copy / layout plan / floor plan dated 00/00/2000 are made available for verification.",
+    checkBeforeDisbursement: "5. Kindly check the __ at your end before disbursement.",
+    occupancyObservation: "6. At the time of visit we have observed that property was (Self/ Seller/ Tenant) occupied since last days/ months.",
+    ownerObservation: "7. As per society name board owner of the unit is XYZ., During our visit we have not observed society name board.",
+    saleAgreement: "8. Agreement for sale made between ___ on dated are made available for verification (Index II No. 123).",
+    unitBoundaries: "9. Unit boundaries are not mentioned in available documents hence please check at your legal end before disbursement.",
+    numberingPattern: "10. On site numbering pattern is different than approved plan pattern. Now please take change in numbering pattern confirmation from society/ builder latter head before funding wrt approved plan.",
+    propertyAge: "11. As per age of property more than 10/20 years report released on the basis of available doqument as per institute policy.",
+    coveredParking: "12. Additional covered car parking of Rs. 0000/- can be considered on providing authenticate doquments.",
+    flatMergeObservation: "13. As per site observation Flat no. _&_ are internally merged with single entry from unit no. 00.",
+    constructionObservation: "14. As per site observation work is completed upto RCC _ Floor Brickork Upto_ Floor Flooring upto_Plastering upto_Finishing work is in progress.",
+    unitDetails: "15. Unit consisting of Loft/ Terrace/ basement area ___ Sq.F.t Hence 1/3 area of ____S.q.F.t is considered in valuation as it is documented in agreement for sale. Kindly chack the approved plan for the approval of loft/ terracel/ basement at your end before disbursement.",
+    propertyAPF: "16. The said property is APF with the institute hence report release on the area provided by institute.",
+    topUpCase: "17. As this top up case valuation done on the basis of area given by institute on mail. We have not verified any technical/ Ownership doquments for valuation.",
+    reraRegistration: "18. Rera Registration no of captioned project is ____.",
+    visitDetails: "19. During Property Visit ___ met at site who is ___ His contact number is __ It was clearly explained to applicant and that the property visist is being done for the purpose of valuation in relation with the loan proposal with ICICI for which the property would be treated as a security.",
+    locationObservation: "20. The said building is located in Gaothan Area. No technical documents are available for verification also note that DP plan not made available for verification hence kindly chack the same at your end before disbursement. Report is released on the basis of mail provided from Institute. The construction of the building is illegal hence kindly chack your policy before funding such type of cases.",
+    constructionSuitability: "21. In our view the work being done for construction / extension/ improvement in the dwelling unit done not endanger the residents in the dwelling unit and also the structure of the building is suitable for the aforesaid work in the dwelling unit.",
+    gpApproval: "22. The captioned property is approved by GP and please check your policy before funding the Gp properfies. Kindly check the autinenticity of GP CC & Plan shared with us at your end and also check your policy before funding the GP Properties.",
+    loadingConsideration: "23. We have considered 30/45/50% loading on Plan / agreement / Carpet Area as per agreement/ Index II / Allotment letter to funish the report.",
+    constructionActivity: "24. At the time of site visit no construction activity was seen which is to be noted.",
+    internalVisit: "25. Internal visit was not allowed by Sales/ applicant/ Owner/ tenant all details as per site information.",
+    underConstructionRemarks: "26. As per RERA project name is \"xyz\" & RERA number is \"123\" for building/ project. Project start date is \"00/00/2019\" & end dated is \"00/00/2019\" as per RERA record. As per RERA structure is proposed upto \"G+00 floor\" Plans are approved upto\"G+00floor\". During site visit we have observed that pace of the project is average/ on hold/ acceptable or delayed from schedule. pls note current stage of construction is \"00\" & recommendation stage is \"00\". As this is GP project it is not registered on RERA website. Pls note we have calculated construction stage & recommendation stage according to proposed structure."
+  };
+  
